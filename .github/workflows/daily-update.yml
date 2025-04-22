@@ -14,7 +14,7 @@ permissions:
 # Make prefixes for this repo
 env:
   FILTER_ARGS: --filter-prefix=Make1- --filter-prefix=Make2-
-  SIGNAL_PREFIX: MAKE
+  SIGNAL_PREFIX: ROLLS-ROYCE
 
 concurrency:
   group: "data-update"
