@@ -13,8 +13,8 @@ permissions:
 
 # Make prefixes for this repo
 env:
-  FILTER_ARGS: --filter-prefix=Make1- --filter-prefix=Make2-
-  SIGNAL_PREFIX: ROLLS-ROYCE
+  FILTER_ARGS: --filter-prefix=Rolls-Royce- --filter-prefix=BMW- --filter-prefix=MINI-
+  SIGNAL_PREFIX: ROLLSROYCE
 
 concurrency:
   group: "data-update"
@@ -130,3 +130,5 @@ jobs:
           git commit -m "Update signalsets from OBDb repositories [skip ci]"
           git push
           echo "commit_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+          
