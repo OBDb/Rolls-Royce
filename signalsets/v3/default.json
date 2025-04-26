@@ -1,22 +1,40 @@
 { "commands": [
 { "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "6335"}, "freq": 3600,
   "signals": [
-    {"id": "ROLLSROYCE_HVBAT_V",                "path": "Battery", "fmt": {            "len": 16, "max": 655.35,                 "div": 100,                 "unit": "volts"       }, "name": "HV battery voltage"},
-    {"id": "ROLLSROYCE_HVBAT_C",                "path": "Battery", "fmt": {            "len": 32, "max": 10000,  "min": -10000,  "div": 100,   "sign": true, "unit": "amps"        }, "name": "HV battery current"},
-    {"id": "ROLLSROYCE_HVBAT_SOC",              "path": "Battery", "fmt": {            "len": 16, "max": 100,                    "div": 10,                  "unit": "percent"     }, "name": "HV battery charge",                        "suggestedMetric": "stateOfCharge"},
-    {"id": "ROLLSROYCE_HVBAT_CT_MIN",           "path": "Battery", "fmt": {            "len": 16, "max": 327.67, "min": -327.67, "div": 100,   "sign": true, "unit": "celsius"     }, "name": "HV battery cell temperature (min)"},
-    {"id": "ROLLSROYCE_HVBAT_C_CNT",            "path": "Battery", "fmt": {            "len": 16, "max": 65535,                                              "unit": "scalar"      }, "name": "Number of cells"},
+    {"id": "ROLLSROYCE_HVBAT_SOH", "path": "Battery", "fmt": {"bix": 24, "len": 8, "max": 100, "unit": "percent" }, "name": "HV battery health", "suggestedMetric": "stateOfHealth"}
+  ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DD68"}, "freq": 1,
+  "signals": [
+    {"id": "ROLLSROYCE_HVBAT_V",    "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "HV battery voltage"},
+    {"id": "ROLLSROYCE_HVBAT_VOLT", "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "HV battery voltage"}
+  ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DD69"}, "freq": 30,
+  "signals": [
+    {"id": "ROLLSROYCE_HVBAT_C",    "path": "Battery", "fmt": { "len": 32, "max": 10000, "min": -10000, "div": 100, "sign": true, "unit": "amps" }, "name": "HV battery current"},
+    {"id": "ROLLSROYCE_HVBAT_CURR", "path": "Battery", "fmt": { "len": 32, "max": 10000, "min": -10000, "div": 100,               "unit": "amps" }, "name": "HV battery current"}
+  ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DDBC"}, "freq": 1,
+  "signals": [
+    {"id": "ROLLSROYCE_HVBAT_SOC",     "path": "Battery", "fmt": {           "len": 16, "max": 100, "div": 10, "unit": "percent" }, "name": "HV battery charge",           "suggestedMetric": "stateOfCharge"},
+    {"id": "ROLLSROYCE_HVBAT_SOC_MAX", "path": "Battery", "fmt": {"bix": 16, "len": 16, "max": 100, "div": 10, "unit": "percent" }, "name": "HV battery charge (maximum)"},
+    {"id": "ROLLSROYCE_HVBAT_SOC_MIN", "path": "Battery", "fmt": {"bix": 32, "len": 16, "max": 100, "div": 10, "unit": "percent" }, "name": "HV battery charge (minimum)"}
+  ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DDC0"}, "freq": 30,
+  "signals": [
+    {"id": "ROLLSROYCE_HVBAT_CT_MIN", "path": "Battery", "fmt": {           "len": 16, "max": 327.67, "min": -327.67, "div": 100, "sign": true, "unit": "celsius" }, "name": "HV battery cell temperature (min)"},
+    {"id": "ROLLSROYCE_HVBAT_CT_MAX", "path": "Battery", "fmt": {"bix": 16, "len": 16, "max": 327.67, "min": -327.67, "div": 100, "sign": true, "unit": "celsius" }, "name": "HV battery cell temperature (max)"}
+  ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DF71"}, "freq": 86400,
+  "signals": [
+    {"id": "ROLLSROYCE_HVBAT_C_CNT",     "path": "Battery", "fmt": {           "len": 16, "max": 65535, "unit": "scalar" }, "name": "Number of cells"},
+    {"id": "ROLLSROYCE_HVBAT_C_CNT_MOD", "path": "Battery", "fmt": {"bix": 16, "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Number of cells per module"},
+    {"id": "ROLLSROYCE_HVBAT_MOD_CNT",   "path": "Battery", "fmt": {"bix": 24, "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Number of modules"},
+    {"id": "ROLLSROYCE_HVBAT_MOD_T_CNT", "path": "Battery", "fmt": {"bix": 32, "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Number of temperature sensors per module"}
+  ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DFA0"}, "freq": 1,
+  "signals": [
     {"id": "ROLLSROYCE_HVBAT_C_CAP_MIN",        "path": "Battery", "fmt": {            "len": 16, "max": 655.35,                 "div": 100,                 "unit": "ampereHours" }, "name": "Cell capacity (min)"},
-    {"id": "ROLLSROYCE_HVBAT_VOLT",             "path": "Battery", "fmt": {            "len": 16, "max": 655.35,                 "div": 100,                 "unit": "volts"       }, "name": "HV battery voltage"},
-    {"id": "ROLLSROYCE_HVBAT_CURR",             "path": "Battery", "fmt": {            "len": 32, "max": 10000,  "min": -10000,  "div": 100,                 "unit": "amps"        }, "name": "HV battery current"},
-    {"id": "ROLLSROYCE_HVBAT_SOC_MAX",          "path": "Battery", "fmt": {"bix": 16,  "len": 16, "max": 100,                    "div": 10,                  "unit": "percent"     }, "name": "HV battery charge (maximum)"},
-    {"id": "ROLLSROYCE_HVBAT_CT_MAX",           "path": "Battery", "fmt": {"bix": 16,  "len": 16, "max": 327.67, "min": -327.67, "div": 100,   "sign": true, "unit": "celsius"     }, "name": "HV battery cell temperature (max)"},
-    {"id": "ROLLSROYCE_HVBAT_C_CNT_MOD",        "path": "Battery", "fmt": {"bix": 16,  "len": 8,  "max": 255,                                                "unit": "scalar"      }, "name": "Number of cells per module"},
     {"id": "ROLLSROYCE_HVBAT_C_CAP_MAX",        "path": "Battery", "fmt": {"bix": 16,  "len": 16, "max": 655.35,                 "div": 100,                 "unit": "ampereHours" }, "name": "Cell capacity (max)"},
-    {"id": "ROLLSROYCE_HVBAT_SOH",              "path": "Battery", "fmt": {"bix": 24,  "len": 8,  "max": 100,                                                "unit": "percent"     }, "name": "HV battery health",                        "suggestedMetric": "stateOfHealth"},
-    {"id": "ROLLSROYCE_HVBAT_MOD_CNT",          "path": "Battery", "fmt": {"bix": 24,  "len": 8,  "max": 255,                                                "unit": "scalar"      }, "name": "Number of modules"},
-    {"id": "ROLLSROYCE_HVBAT_SOC_MIN",          "path": "Battery", "fmt": {"bix": 32,  "len": 16, "max": 100,                    "div": 10,                  "unit": "percent"     }, "name": "HV battery charge (minimum)"},
-    {"id": "ROLLSROYCE_HVBAT_MOD_T_CNT",        "path": "Battery", "fmt": {"bix": 32,  "len": 8,  "max": 255,                                                "unit": "scalar"      }, "name": "Number of temperature sensors per module"},
     {"id": "ROLLSROYCE_HVBAT_C_CAP_AVG",        "path": "Battery", "fmt": {"bix": 32,  "len": 16, "max": 655.35,                 "div": 100,                 "unit": "ampereHours" }, "name": "Cell capacity (average)"},
     {"id": "ROLLSROYCE_HVBAT_C_V_MIN",          "path": "Battery", "fmt": {"bix": 48,  "len": 16, "max": 6.5535,                 "div": 10000,               "unit": "volts"       }, "name": "Cell voltage (min))"},
     {"id": "ROLLSROYCE_HVBAT_C_V_MAX",          "path": "Battery", "fmt": {"bix": 64,  "len": 16, "max": 6.5535,                 "div": 10000,               "unit": "volts"       }, "name": "Cell voltage (max)"},
@@ -35,23 +53,43 @@
     {"id": "ROLLSROYCE_HVBAT_C_OCV_AVG",        "path": "Battery", "fmt": {"bix": 272, "len": 16, "max": 6.5535,                 "div": 10000,               "unit": "volts"       }, "name": "Cell OCV (avg)"},
     {"id": "ROLLSROYCE_HVBAT_IMPEDANCE_ALPHA",  "path": "Battery", "fmt": {"bix": 288, "len": 16, "max": 6.5535,                 "div": 10000,               "unit": "scalar"      }, "name": "Aging factor"}
   ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "E5C7"}, "freq": 1,
+  "signals": [
+    {"id": "ROLLSROYCE_HVBAT_SOH", "path": "Battery", "fmt": {"bix": 24, "len": 8, "max": 100, "unit": "percent" }, "name": "HV battery health", "suggestedMetric": "stateOfHealth"}
+  ]},
+{ "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "E5CE"}, "freq": 1,
+  "signals": [
+    {"id": "ROLLSROYCE_HVBAT_SOC", "path": "Battery", "fmt": { "len": 16, "max": 100, "div": 100, "unit": "percent" }, "name": "HV battery charge", "suggestedMetric": "stateOfCharge"}
+  ]},
 { "hdr": "6F1", "rax": "60D", "eax": "0D", "fcm1": true, "dbg": true, "cmd": {"22": "D240"}, "freq": 0.25,
   "signals": [
     {"id": "ROLLSROYCE_VSS_INSTR", "path": "Movement", "fmt": { "len": 16, "max": 1000, "unit": "kilometersPerHour" }, "name": "Vehicle speed (instrument cluster)", "suggestedMetric": "speed", "description": "Instrument cluster vehicle speed."}
   ]},
 { "hdr": "6F1", "rax": "612", "eax": "12", "fcm1": true, "dbg": true, "cmd": {"22": "4AB1"}, "freq": 0.25,
   "signals": [
-    {"id": "ROLLSROYCE_VSS2", "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 100, "unit": "kilometersPerHour" }, "name": "Vehicle speed",       "suggestedMetric": "speed", "description": "High resolution vehicle speed."},
-    {"id": "ROLLSROYCE_EOP",  "path": "Movement", "fmt": { "len": 8,  "max": 255,             "unit": "scalar"            }, "name": "Engine oil pressure"}
+    {"id": "ROLLSROYCE_VSS2", "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 100, "unit": "kilometersPerHour" }, "name": "Vehicle speed", "suggestedMetric": "speed", "description": "High resolution vehicle speed."}
+  ]},
+{ "hdr": "6F1", "rax": "612", "eax": "12", "fcm1": true, "dbg": true, "cmd": {"22": "586F"}, "freq": 30,
+  "signals": [
+    {"id": "ROLLSROYCE_EOP", "path": "Movement", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Engine oil pressure"}
   ]},
 { "hdr": "6F1", "rax": "618", "eax": "18", "fcm1": true, "dbg": true, "cmd": {"22": "DA12"}, "freq": 30,
   "signals": [
-    {"id": "ROLLSROYCE_ATF_TEMP", "path": "Engine", "fmt": {           "len": 8, "max": 255, "unit": "scalar" }, "name": "ATF temperature"},
-    {"id": "ROLLSROYCE_EOT",      "path": "Engine", "fmt": {           "len": 8, "max": 255, "unit": "scalar" }, "name": "Engine oil temperature"},
-    {"id": "ROLLSROYCE_GEAR",     "path": "Engine", "fmt": {           "len": 8, "max": 255, "unit": "scalar" }, "name": "Gear"},
-    {"id": "ROLLSROYCE_TIME_D",   "path": "Engine", "fmt": {           "len": 8, "max": 255, "unit": "scalar" }, "name": "Time in D"},
-    {"id": "ROLLSROYCE_TIME_S",   "path": "Engine", "fmt": {"bix": 8,  "len": 8, "max": 255, "unit": "scalar" }, "name": "Time in S"},
-    {"id": "ROLLSROYCE_TIME_M",   "path": "Engine", "fmt": {"bix": 16, "len": 8, "max": 255, "unit": "scalar" }, "name": "Time in M"}
+    {"id": "ROLLSROYCE_ATF_TEMP", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "ATF temperature"}
+  ]},
+{ "hdr": "6F1", "rax": "618", "eax": "18", "fcm1": true, "dbg": true, "cmd": {"22": "DA25"}, "freq": 30,
+  "signals": [
+    {"id": "ROLLSROYCE_EOT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Engine oil temperature"}
+  ]},
+{ "hdr": "6F1", "rax": "618", "eax": "18", "fcm1": true, "dbg": true, "cmd": {"22": "DA2E"}, "freq": 30,
+  "signals": [
+    {"id": "ROLLSROYCE_GEAR", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gear"}
+  ]},
+{ "hdr": "6F1", "rax": "618", "eax": "18", "fcm1": true, "dbg": true, "cmd": {"22": "DA37"}, "freq": 30,
+  "signals": [
+    {"id": "ROLLSROYCE_TIME_D", "path": "Engine", "fmt": {           "len": 8, "max": 255, "unit": "scalar" }, "name": "Time in D"},
+    {"id": "ROLLSROYCE_TIME_S", "path": "Engine", "fmt": {"bix": 8,  "len": 8, "max": 255, "unit": "scalar" }, "name": "Time in S"},
+    {"id": "ROLLSROYCE_TIME_M", "path": "Engine", "fmt": {"bix": 16, "len": 8, "max": 255, "unit": "scalar" }, "name": "Time in M"}
   ]},
 { "hdr": "6F1", "rax": "61A", "eax": "1A", "fcm1": true, "dbg": true, "cmd": {"22": "DE00"}, "freq": 5,
   "signals": [
@@ -79,21 +117,33 @@
     {"id": "ROLLSROYCE_REAR_WINDOW",         "path": "Doors", "fmt": {"bix": 48, "len": 8, "max": 255, "unit": "scalar" }, "name": "Rear window open"},
     {"id": "ROLLSROYCE_CENTRAL_LOCK",        "path": "Doors", "fmt": {"bix": 56, "len": 8, "max": 255, "unit": "scalar" }, "name": "Locked",                   "description": "Overall lock state of the vehicle"}
   ]},
+{ "hdr": "6F1", "rax": "660", "eax": "60", "fcm1": true, "dbg": true, "cmd": {"22": "420C"}, "freq": 5,
+  "signals": [
+    {"id": "ROLLSROYCE_RANGE_ECO",  "path": "Trips", "fmt": {           "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Estimated range remaining in economy mode", "suggestedMetric": "electricRange"},
+    {"id": "ROLLSROYCE_RANGE_COMF", "path": "Trips", "fmt": {"bix": 16, "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Estimated range remaining in comfort mode", "suggestedMetric": "electricRange"},
+    {"id": "ROLLSROYCE_RANGE",      "path": "Trips", "fmt": {"bix": 32, "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Estimated range remaining",                 "suggestedMetric": "electricRange"}
+  ]},
 { "hdr": "6F1", "rax": "660", "eax": "60", "fcm1": true, "dbg": true, "cmd": {"22": "D107"}, "freq": 0.25,
   "signals": [
-    {"id": "ROLLSROYCE_VSS",         "path": "Movement", "fmt": {           "len": 16, "max": 255,                    "div": 10,                                              "unit": "kilometersPerHour" }, "name": "Vehicle speed",                             "suggestedMetric": "speed",                "description": "Speedometer vehicle speed."},
-    {"id": "ROLLSROYCE_ODO1",        "path": "Trips",    "fmt": {           "len": 32, "max": 4294967295,                                                                     "unit": "kilometers"        }, "name": "Odometer #1",                               "suggestedMetric": "odometer"},
-    {"id": "ROLLSROYCE_RANGE_ECO",   "path": "Trips",    "fmt": {           "len": 16, "max": 65535,                                                                          "unit": "kilometers"        }, "name": "Estimated range remaining in economy mode", "suggestedMetric": "electricRange"},
-    {"id": "ROLLSROYCE_RANGE_E_CUR", "path": "Trips",    "fmt": {           "len": 16, "max": 6553.5,                 "div": 10,                                              "unit": "kilometers"        }, "name": "Current electric range",                    "suggestedMetric": "electricRange",        "description": "Current estimated electric range"},
-    {"id": "ROLLSROYCE_AAT",         "path": "Climate",  "fmt": {           "len": 8,  "max": 87.5,       "min": -40, "div": 2,    "add": -40,                                "unit": "celsius"           }, "name": "Ambient air temperature"},
-    {"id": "ROLLSROYCE_RANGE_COMF",  "path": "Trips",    "fmt": {"bix": 16, "len": 16, "max": 65535,                                                                          "unit": "kilometers"        }, "name": "Estimated range remaining in comfort mode", "suggestedMetric": "electricRange"},
-    {"id": "ROLLSROYCE_RANGE_E_MAX", "path": "Trips",    "fmt": {"bix": 16, "len": 16, "max": 6553.5,                 "div": 10,                                              "unit": "kilometers"        }, "name": "Maximum electric range"},
-    {"id": "ROLLSROYCE_ODO2",        "path": "Trips",    "fmt": {"bix": 32, "len": 32, "max": 4294967295,                                                                     "unit": "kilometers"        }, "name": "Odometer #2",                               "suggestedMetric": "odometer"},
-    {"id": "ROLLSROYCE_RANGE",       "path": "Trips",    "fmt": {"bix": 32, "len": 16, "max": 65535,                                                                          "unit": "kilometers"        }, "name": "Estimated range remaining",                 "suggestedMetric": "electricRange"},
-    {"id": "ROLLSROYCE_RANGE_F_CUR", "path": "Trips",    "fmt": {"bix": 32, "len": 16, "max": 6553.5,                 "div": 10,                             "nullmax": 6553, "unit": "kilometers"        }, "name": "Current fuel range",                        "description": "Requires range extender."},
-    {"id": "ROLLSROYCE_RANGE_F_MAX", "path": "Trips",    "fmt": {"bix": 48, "len": 16, "max": 6553.5,                 "div": 10,               "nullmin": 0, "nullmax": 6553, "unit": "kilometers"        }, "name": "Maximum fuel range",                        "description": "Requires range extender."},
-    {"id": "ROLLSROYCE_RANGE_E_USE", "path": "Trips",    "fmt": {"bix": 64, "len": 16, "max": 65.535,                 "div": 1000,             "nullmin": 0, "nullmax": 65,   "unit": "kilowattHours"     }, "name": "Electric consumption / 100km"},
-    {"id": "ROLLSROYCE_AUX_PWR",     "path": "Trips",    "fmt": {"bix": 80, "len": 16, "max": 655.35,                 "div": 100,                            "nullmax": 655,  "unit": "kilowatts"         }, "name": "Auxiliary power consumption"}
+    {"id": "ROLLSROYCE_VSS", "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10, "unit": "kilometersPerHour" }, "name": "Vehicle speed", "suggestedMetric": "speed", "description": "Speedometer vehicle speed."}
+  ]},
+{ "hdr": "6F1", "rax": "660", "eax": "60", "fcm1": true, "dbg": true, "cmd": {"22": "D10D"}, "freq": 5,
+  "signals": [
+    {"id": "ROLLSROYCE_ODO1", "path": "Trips", "fmt": {           "len": 32, "max": 4294967295, "unit": "kilometers" }, "name": "Odometer #1", "suggestedMetric": "odometer"},
+    {"id": "ROLLSROYCE_ODO2", "path": "Trips", "fmt": {"bix": 32, "len": 32, "max": 4294967295, "unit": "kilometers" }, "name": "Odometer #2", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "6F1", "rax": "660", "eax": "60", "fcm1": true, "dbg": true, "cmd": {"22": "D111"}, "freq": 5,
+  "signals": [
+    {"id": "ROLLSROYCE_RANGE_E_CUR", "path": "Trips", "fmt": {           "len": 16, "max": 6553.5, "div": 10,                                  "unit": "kilometers"    }, "name": "Current electric range",       "suggestedMetric": "electricRange",        "description": "Current estimated electric range"},
+    {"id": "ROLLSROYCE_RANGE_E_MAX", "path": "Trips", "fmt": {"bix": 16, "len": 16, "max": 6553.5, "div": 10,                                  "unit": "kilometers"    }, "name": "Maximum electric range"},
+    {"id": "ROLLSROYCE_RANGE_F_CUR", "path": "Trips", "fmt": {"bix": 32, "len": 16, "max": 6553.5, "div": 10,                 "nullmax": 6553, "unit": "kilometers"    }, "name": "Current fuel range",           "description": "Requires range extender."},
+    {"id": "ROLLSROYCE_RANGE_F_MAX", "path": "Trips", "fmt": {"bix": 48, "len": 16, "max": 6553.5, "div": 10,   "nullmin": 0, "nullmax": 6553, "unit": "kilometers"    }, "name": "Maximum fuel range",           "description": "Requires range extender."},
+    {"id": "ROLLSROYCE_RANGE_E_USE", "path": "Trips", "fmt": {"bix": 64, "len": 16, "max": 65.535, "div": 1000, "nullmin": 0, "nullmax": 65,   "unit": "kilowattHours" }, "name": "Electric consumption / 100km"},
+    {"id": "ROLLSROYCE_AUX_PWR",     "path": "Trips", "fmt": {"bix": 80, "len": 16, "max": 655.35, "div": 100,                "nullmax": 655,  "unit": "kilowatts"     }, "name": "Auxiliary power consumption"}
+  ]},
+{ "hdr": "6F1", "rax": "660", "eax": "60", "fcm1": true, "dbg": true, "cmd": {"22": "D112"}, "freq": 5,
+  "signals": [
+    {"id": "ROLLSROYCE_AAT", "path": "Climate", "fmt": { "len": 8, "max": 87.5, "min": -40, "div": 2, "add": -40, "unit": "celsius" }, "name": "Ambient air temperature"}
   ]},
 { "hdr": "6F1", "rax": "663", "eax": "63", "fcm1": true, "dbg": true, "cmd": {"22": "D031"}, "freq": 1,
   "signals": [
