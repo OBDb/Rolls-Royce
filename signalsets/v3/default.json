@@ -5,8 +5,7 @@
   ]},
 { "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DD68"}, "freq": 1,
   "signals": [
-    {"id": "ROLLSROYCE_HVBAT_V",    "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "HV battery voltage"},
-    {"id": "ROLLSROYCE_HVBAT_VOLT", "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "HV battery voltage"}
+    {"id": "ROLLSROYCE_HVBAT_V", "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "HV battery voltage"}
   ]},
 { "hdr": "6F1", "rax": "607", "eax": "07", "fcm1": true, "dbg": true, "cmd": {"22": "DD69"}, "freq": 30,
   "signals": [
